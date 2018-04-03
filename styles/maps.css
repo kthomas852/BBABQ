@@ -1,0 +1,24 @@
+var map = new OpenLayers.Map({
+    div: "map",
+    layers: [
+    	var gmap = new OpenLayers.Layer.Google(
+                "Google Streets", // the default
+                {sphericalMercator:true}
+            );
+    
+      
+        new OpenLayers.Layer.Vector("KML", {
+            strategies: [new OpenLayers.Strategy.Fixed()],
+            protocol: new OpenLayers.Protocol.HTTP({
+                url: "https://raw.githubusercontent.com/kthomas852/geog485/gh-pages/BikeRoutes.kml",
+                format: new OpenLayers.Format.KML({
+                    extractStyles: true, 
+                    extractAttributes: true,
+                    maxDepth: 2
+                })
+            })
+        })
+    ],
+    center: new OpenLayers.LonLat(-112.169, 36.099),
+    zoom: 11
+});
